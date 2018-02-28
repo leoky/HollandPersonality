@@ -1,0 +1,238 @@
+<%-include('main/head')%>
+
+<div class="container-fluid"> 
+  <div class="myRow"  style="padding-bottom:0px;">
+     <h1 class="myText font-weight-bold">Choosing a Major Based on Your Personality</h1>
+    <h5 class="myText">Choose the number of any item–subject, activity, or type of person below that are appealing to you -</h5>
+    <h5 class="myText">Leave the rest blank.</h5>
+  </div>
+</div>
+
+<div id="list" class="carousel slide" data-ride="carousel" >
+
+  <div class="carousel-inner">
+
+    <div class="carousel-item active">
+        <div class="container-fluid">
+          <div class="row myRow" >
+              <%for(var i =0;i<24;i++){%>
+                <div class="col-md-4">
+                  <label class="btn btn-primary labelForm btn-lg btn-block myList">
+                    <input type="checkbox" value="<%=(i+1)%6%>" name="answer[<%=i%>]" style="display:none"> 
+                    <div class="row">
+                      <div class="col-md-1">
+                      <%=i+1%>.
+                    </div>
+                    <div class="col-md-11 text-center">
+                        <%=question[i]%> 
+                    </div>
+                    </div>
+                    
+                  </label>
+                </div>
+              <%} %>
+          </div>
+        </div>     
+    </div>
+
+    <div class="carousel-item">
+      <div class="container-fluid">
+        <div class="row myRow" >
+          <%for(var i =24;i<48;i++){%>
+          <div class="col-md-4">
+            <label class="btn btn-primary btn-lg labelForm btn-block myList">
+                   <input type="checkbox" value="<%=(i+1)%6%>" name="answer[<%=i%>]" style="display:none"> <div class="row">
+                     <div class="col-md-1">
+                     <%=i+1%>.
+                   </div>
+                   <div class="col-md-11 text-center">
+                      <%=question[i]%> 
+                   </div>
+                  </div>
+                </label>
+          </div>
+          <%}%>
+        </div>
+    </div>
+    </div>
+          
+  </div>
+
+</div>
+
+<div class="d-flex myRow" style="padding-top:0px">
+  <div class="p-2" >
+    <a class="btn btn-primary btn-lg myBtn btnNext" href="#list" role="button" data-slide="prev" style="display:none"id="backList" >
+        BACK
+    </a>
+  </div>
+  <div class="p-2 ml-auto" >
+    <a class="btn btn-primary btn-lg myBtn btnNext" href="#list" role="button" data-slide="next" id="nextList">
+        NEXT
+    </a>
+  </div>
+
+  <div class="p-2" >
+      <button class="btn btn-primary btn-lg myBtn btnNext" onclick="myResult()" style="display:none"  id="listSubmit"data-toggle="modal" data-target=".bd-example-modal-lg">
+       SUBMIT
+    </button>
+  </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-keyboard="false" data-backdrop="static" aria-hidden="true">
+  <div class="modal-dialog modal-lg myModal">
+    <div class="modal-content myModalPadd" >
+      <h1 class="textBold" id="namePart"></h1>
+      <h5 class="text-muted" style="margin-top:0.1em;margin-bottom:0.7em">Here is the result of the test you have taken. Thanks for your participation.</h5>
+      <table class="col-md-12 myTable myText">
+        <tr class>
+          <td class="textBold">Highest Score</td>
+          <td class="listResult">....</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td class="textBold">Holland Score</td>
+          <td class="listResult">....</td>
+        </tr>
+        <tr>
+          <td class="textBold">Second Highest Score</td>
+          <td class="listResult">....</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td class="textBold">Holland Score</td>
+          <td class="listResult">....</td>
+        </tr>
+        <tr>
+          <td class="textBold">Third Highest Score</td>
+          <td class="listResult">....</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td class="textBold">Holland Score</td>
+          <td class="listResult">....</td>
+        </tr>
+      
+      </table>
+
+      <div class="row justify-content-center" >
+        <div class="col-md-2 text-center">
+          <a href="/done" style="text-decoration:none"><button class="btn btn-primary myBtn btn-block endBtn">OK</button>       </a>
+        </div>
+      </div>
+       
+    
+    </div>
+  </div>
+</div>
+
+
+<%-include('main/footer')%>
+<%-include('main/script')%>
+
+<script>
+  $('.carousel').carousel({
+    interval: false
+  }); 
+  $(".myList").change(function() {
+    $(this).toggleClass("selected");
+        //  if( $("#nextList").is(":hidden")){
+    //   $("#listSubmit").fadeIn();
+    // }else{
+    //   alert();
+    //    $("#listSubmit").fadeOut();
+    // } 
+    
+  });
+  
+  // $('a').click(function(){
+  //   $('a:hidden').fadeIn();
+  //   $(this).fadeOut("Slow");
+  
+  // });
+
+
+  $('a').click(function(){
+    if($(this).is("#nextList")){
+      $('#backList').fadeIn();
+      // $(this).text("SUBMIT");
+      $(this).hide();
+      $("#listSubmit").show();
+      // $(this).replaceWith(listSubmit.clone().show());
+      // $(this).attr({
+      //   onclick:myResult()
+      // });
+    }else{
+      $(this).fadeOut("slow");
+        $(this).hide();
+         $("#listSubmit").hide();
+      $("#nextList").show();
+      //  $('#nextList').fadeIn();
+        // $('#listSubmit').replaceWith(nextList.clone());
+      // $('#nextList').text("Next");
+      // $('#nextList').attr('onclick','');
+    }
+  });
+
+  // $('#backList').click(function(){
+  //   $("#listSubmit").fadeOut('fast');
+  // });
+  // $('#nextList').click(function(){
+  //   $('#backList').fadeIn();
+  //   $(this).text("SUBMIT");
+  //   $(this).attr('onclick','myResult()');
+  // });
+
+
+function myResult() {
+    $.get( "/done", function( data ) {
+      
+    });
+    var arr = [];
+    $.each($('input:checked'), function() {
+      var value = $(this).val()
+
+      arr.push(value)
+    })
+  console.log(arr)
+      $.ajax({
+           dataType:"json",
+           type: "post",
+           url: "/result",
+           data:{
+             arr:arr
+           }
+       }).done(function (result) {
+    //      result.forEach( (result,idx)=>{
+    //  $('.listResult').eq(idx).text(result[idx%2])
+    //  console.log(res
+// })
+           $('.listResult').eq(0).text(result[0][0]);
+           $('.listResult').eq(1).text(result[0][1]);
+           $('.listResult').eq(2).text(result[1][0]);
+           $('.listResult').eq(3).text(result[1][1]);
+           $('.listResult').eq(4).text(result[2][0]);
+           $('.listResult').eq(5).text(result[2][1]);
+           $('#namePart').text('Hi '+result[result.length-1].name+'!');
+           
+       })
+   }
+
+
+
+</script>
+<%-include('main/lastfooter')%>
+
+

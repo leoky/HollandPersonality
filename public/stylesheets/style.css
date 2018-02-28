@@ -1,0 +1,155 @@
+body {
+  /* padding: 50px; */
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+body{
+  background-image:url("../images/main/pho.png");
+  background-position: right top;
+  background-size: 35em;
+  background-repeat:no-repeat;background-attachment:fixed;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  }
+
+a {
+  color: #00B7FF;
+}
+
+/* for form */
+/* form.formRegis{ */
+  /* margin-top: 0.5em; */
+/* } */
+.error_form{
+  color:rgb(255, 53, 53); 
+  margin:0.2em 0;
+  font-size: 1em;
+}
+.labelForm.myLabelForm{
+  font-family: 'Montserrat';
+  font-size:1.5em;
+  font-weight: 700;
+}
+.labelForm{
+  font-family: 'Montserrat';
+  
+   font-size: 1.5em;
+}
+.inputForm{
+  border-radius: 0.5em;
+  text-align: center;
+  font-size: 1.2em;
+  /* box-shadow: 3px 3px 10px 0px black; */
+  /* border:4px solid #0559a5; */
+  border:3px solid rgb(145, 143, 143);
+}
+/* close for form */
+
+.myText{
+  font-family: 'Montserrat';
+}
+.myBtn{
+  margin: 1em 0;
+  padding: 0.5em 2em;
+  border-radius: 0.5em;
+  background: #102269;
+  border:0.1em solid #102269;
+}
+.textBold{
+  font-weight: 700;
+}
+/* .btn:focus.myBtn{
+  box-shadow: 0 0 0 4px#102269!important;
+} */
+
+.myBtn.btnNext{
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.myList{
+  margin:0.5em 0;
+  background: #0559a5;
+  box-shadow: 3px 3px 10px 0 black;
+}
+
+.btn-primary.selected{
+  background:#e01966;
+  /* box-shadow: 0 0 0 5px rgba(197, 58, 58,0.6); */
+  box-shadow: 0 0 0 0 white;
+  border-color: #e01966;
+}
+/* input:focus.inputForm{ */
+  /* border:5px solid #0559a5!important; */
+  /* background: #0559a5!important; */
+  /* box-shadow: 0 0 0 4px#0559a5!important;
+} */
+.form-group input:focus.inputForm{
+  box-shadow: 0 0 0 3px#0559a5;
+  border:1px solid #0559a5;
+}
+/* .form-group input:not(:focus){
+  box-shadow:0 0 0 0 white;
+} */
+.myRow{
+  padding:2.5em;
+}
+.myTable{
+  font-size: 1.8em;
+  border:5px solid #0559a5;
+}
+td{
+  padding-top: 0.5em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-bottom: 0.5em;
+}
+.myBtn.endBtn{
+  background: #e01966;
+  border-color: #e01966;
+  font-size:2em;
+  padding:0px!important;
+    font-weight: bold;
+    margin:0.4em!important;
+  /* box-shadow: 3px 3px 10px 0 black; */
+}
+.modal-lg.myModal{
+  min-width: 1200px;
+}
+.modal-content{
+  border-radius: 2em;
+}
+.myModalPadd{
+  padding-top: 3.5em;
+  padding-left: 3.5em;
+  padding-right: 3.5em;
+}
+.listResult{ 
+ color: #e01966;
+ text-align: center;
+}
+
+
+
+/* not me */
+.modal {
+  text-align: center;
+  background:rgba(0, 0, 0, 0.60);
+}
+
+@media screen and (min-width: 768px) { 
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.hidden{
+  display: none;
+}
+/* not me */

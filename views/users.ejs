@@ -1,0 +1,117 @@
+<%-include('main/head')%>
+
+    <div class="container">
+
+    <h1 class="text-center col-md-12 font-weight-bold" style="font-size:5em;margin-bottom:0">Holland Personality
+            </h1>
+
+    <h1 class="text-center col-md-12 font-weight-bold" style="font-size:3em">Career Test by John L. Holland</h1>
+
+    <h4 class="text-center col-md-12" style="padding-top:0.3em;padding-bottom:0.5em">Fill your data below to start your personality test.</h4>
+        
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col align-self-start"></div>
+            
+            <div class="col-md-6 align-self-center">
+
+                <form class="formRegis text-center " id="regis" method="post" action="/users">
+                    <div class="form-group">
+                        <label class="labelForm myLabelForm"for="formNama">Name</label>
+                        <input type="text" class="form-control inputForm " name="name" id="formNama" placeholder="Full Name">
+                    </div>
+                    <div class="form-group">
+                        <label class="labelForm myLabelForm"for="formSekolah">School</label>
+                        <input type="text" class="form-control inputForm" name="school" id="formSekolah" placeholder="School Name">
+                    </div>
+                    <div class="form-group">
+                        <label class="labelForm myLabelForm"for="formTelp">Phone Number</label>
+                        <input type="text" class="form-control inputForm" name="phone" id="formTelp" placeholder="Phone Number">
+                    </div>
+                    <div class="form-group">
+                        <label class="labelForm myLabelForm"for="formEmail">Email</label>
+                        <input type="email" onChange=checkEmail() class="form-control inputForm" name="email" id="formEmail" placeholder="Valid Email Address">
+                        <div class="error_form hidden" id="e_err">
+                            Email already used, Please use another email
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="labelForm myLabelForm"for="formJurusan">Major</label>
+                        <input type="text" class="form-control inputForm" name="major" id="formJurusan" placeholder="The Major(s) You are Interested to">
+                    </div>
+                     <button class="btn myBtn btn-primary font-weight-bold" type="submit" id="start">START!</button>
+                </form>
+            </div>
+
+            <div class="col align-self-end">
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-5">
+                        <img src="images/main/hmjsi.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+            </div>
+        
+            
+        
+        </div>
+    </div>
+
+
+   <%-include('main/footer')%>
+<%-include('main/script')%>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+      <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
+<script>
+ 
+        $("#regis").validate({
+          rules: {
+            name: "required",
+            email: { required: true, email: true },
+            phone: { required:true,digits:true,minlength:11,maxlength:12},
+            major:"required",
+            school:"required"
+          },
+          messages:{
+            email: {required:"Please Insert your email",email:"Please input email format (ex: yourname@gmail.com )"},
+            name: { required: "Please Insert your name" },       
+            phone: { required: "Please Insert your phone", minlength: " min 11 number",   maxlength: "max 12 number",digits:"Please enter number (ex: 08121XXXXXXX )" },
+            major:{required:"Please input your major"}
+          }, errorClass: "error_form",
+          errorPlacement: function (error, element) {
+            // if (element.attr("name") == "gender") {
+            //   error.appendTo("#errorToShow");
+            // } else if (element.attr("name") == "check") {
+            //   error.appendTo("#errorToShow2");
+            // } else {
+              error.insertAfter(element);
+            // }
+          }
+        });
+      
+        function checkEmail(){
+            console.log()
+            $.ajax({
+                dataType:"json",
+                type: "post",
+                url: "/users/check",
+                data:{
+                    email : event.target.value
+                }
+            }).done(function (result) {
+                if(!result.valid){
+                    $('#e_err').removeClass('hidden');
+                    $('#start').prop('disabled', true);
+                }else{
+                    $('#e_err').addClass('hidden');
+                    $('#start').prop('disabled', false);
+                }
+            })
+        }
+
+</script>
+<%-include('main/lastfooter')%>
