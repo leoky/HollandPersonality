@@ -7,8 +7,53 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-        <h1>h1 !</h1>
-        <h1><%= myVar %></h1>
-        <p>ty ya</p>
+    <table style="width:100%;height:100%;border-spacing:0;border-collapse:collapse;margin:0 auto;max-width:50em">
+        <tbody>
+            <tr>
+                <td>
+                    <table style="width:100%;height:100%;border-spacing:0;border-collapse:collapse;margin:0 auto;">
+                        <tbody>
+                            <tr>
+                               <td style="width:100%">
+                                    <div style="background:url(cid:header) no-repeat center / 100% auto">           
+                                        <h1 style="text-align:center;font-size:2.3em;margin-bottom:0.5em;margin-top:0;padding-top:6.3em">Hi <%= name %> !</h1>
+                                    </div>
+                               </td>    
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+
+            
+
+            <tr>
+                <td style="width:100%">
+                    <h1 style="text-align:center;font-size:1.5em;margin:0.1em">Your Holland Personality Test  Result is:</h1>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="width:100%">
+                    <h1 style="text-align:center;font-size:4em;color:#0559a5;margin:0.1em"><%= result[0][0] %> <%= result[1][0] %> <%= result[2][0] %></h1>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="width:100%">
+                    <h1 style="text-align:center;font-size:1em;margin:0.1em">Thanks for your participation in</h1>
+                </td>
+            </tr>
+            
+            <tr>
+                <td style="width:100%;">
+                    <div style="background:url(cid:FooterHTML) no-repeat center top  / 100% auto;height:21em">                   
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+        
+    </table>
+
     </body>
 </html>

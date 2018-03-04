@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var session = require('express-session');
-
+var result=[];
 var checkUser=function(req,res,next){
     if(req.session.username == undefined){
         req.session.username = false;
@@ -15,7 +15,7 @@ var checkUser=function(req,res,next){
 }
 
 /* GET home page. */
-router.get('/',function(req, res, next) {
+router.get('/',checkUser,function(req, res, next) {
     var question = [
         "Farming",
         "Solving math problems",
@@ -66,20 +66,8 @@ router.get('/',function(req, res, next) {
         "Sales people",
         "Filing letters and reports"
     ];
-    res.render('index', { title: 'Express', question: question });
+    res.render('index', { title: 'Holland Personality Test', question: question });
 });
-
-// function remove(array, element) {
-//     var bool = true;
-//     while (bool) {
-//         const index = array.indexOf(element);
-//         if (index !== -1) {
-//             array.splice(index, 1);
-//         } else {
-//             bool = false;
-//         }
-//     }
-// }
 
 function arrange(array) {
     var temp;
@@ -93,32 +81,6 @@ function arrange(array) {
         }
     }
 }
-
-// function announce(array, first, second, third) {
-//     first = [array[0]];
-
-//     for (var i = 1; i < array.length; i++) {
-//         if (first[0][1] == array[i][1]) {
-//             first.push(array[i]);
-//         } else {
-//             if (second == null) {
-//                 second = [array[i]];
-//             } else if (second[0][1] == array[i][1]) {
-//                 second.push(array[i]);
-//             } else {
-//                 if (third == null) {
-//                     third = [array[i]];
-//                 } else if (third[0][1] == array[i][1]) {
-//                     third.push(array[i]);
-//                 } else {
-//                     break;
-//                 }
-//             }
-//         }
-//     }
-
-// }
-
 
 router.post('/result', function(req, res, next) {
     var answer = req.body.arr || [];
@@ -148,7 +110,7 @@ router.post('/result', function(req, res, next) {
             case "5":
                 check[4][1]++;
                 break;
-            case "6":
+            case "0":
                 check[5][1]++;
                 break;
         }
@@ -159,18 +121,39 @@ router.post('/result', function(req, res, next) {
     }
     arrange(check);
     check.push({name:req.session.name});
-    // announce(check);
     console.log(check);
+    result = check;
     res.send(check);
-    // res.redirect('/');
 })
+
+function TEST(name){
+            var end = name.indexOf(" ");
+          if(end==-1){
+            end = name.length;
+          }
+          return end;
+          }
 
 router.get('/done',(req,res)=>{
   
         res.mailer.send('mail/email', {
-          to: 'leonardy189@gmail.com', // REQUIRED. This can be a comma delimited string just like a normal email to field.  
-          subject: 'Test Email', // REQUIRED.
-          myVar:"hahaahhaha",
+          to:req.session.username, // REQUIRED. This can be a comma delimited string just like a normal email to field.  
+          subject: 'Holland Personality Test', // REQUIRED.
+          name:req.session.name.charAt(0).toUpperCase()+req.session.name.substring(1,TEST(req.session.name)),
+          // name:req.session.name.charAt(0).toUpperCase()+req.session.name.slice(1),
+          result:result,
+          attachments:[
+            {   // filename and content type is derived from path
+                filename: 'header.png',
+                filePath: process.cwd() + '/public/images/main/header.png',
+                cid: 'header' 
+            },
+            {
+                filename: 'FooterHTML.png',
+                filePath: process.cwd() + '/public/images/main/FooterHTML.png',
+                cid: 'FooterHTML'
+            }
+          ],
           otherProperty: 'Other Property' // All additional properties are also passed to the template as local variables. 
         }, function (err) {
           if (err) {

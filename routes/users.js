@@ -3,7 +3,7 @@ var router = express.Router();
 var users = require('../model/users.js');
 
 router.get('/',(req,res)=>{
-  res.render('users');
+  res.render('users',{title:'Welcome to Holland Personality Test!'});
 });
 
 

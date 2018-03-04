@@ -2,7 +2,7 @@
 
 <div class="container-fluid"> 
   <div class="myRow"  style="padding-bottom:0px;">
-     <h1 class="myText font-weight-bold">Choosing a Major Based on Your Personality</h1>
+     <h1 class="myText font-weight-bold" syle="margin-top:0.4em">Choosing a Major Based on Your Personality</h1>
     <h5 class="myText">Choose the number of any item–subject, activity, or type of person below that are appealing to you -</h5>
     <h5 class="myText">Leave the rest blank.</h5>
   </div>
@@ -14,7 +14,7 @@
 
     <div class="carousel-item active">
         <div class="container-fluid">
-          <div class="row myRow" >
+          <div class="row myRow">
               <%for(var i =0;i<24;i++){%>
                 <div class="col-md-4">
                   <label class="btn btn-primary labelForm btn-lg btn-block myList">
@@ -129,7 +129,7 @@
 
       <div class="row justify-content-center" >
         <div class="col-md-2 text-center">
-          <a href="/done" style="text-decoration:none"><button class="btn btn-primary myBtn btn-block endBtn">OK</button>       </a>
+          <a href="" style="text-decoration:none"><button class="btn btn-primary myBtn btn-block endBtn">OK</button>       </a>
         </div>
       </div>
        
@@ -148,62 +148,26 @@
   }); 
   $(".myList").change(function() {
     $(this).toggleClass("selected");
-        //  if( $("#nextList").is(":hidden")){
-    //   $("#listSubmit").fadeIn();
-    // }else{
-    //   alert();
-    //    $("#listSubmit").fadeOut();
-    // } 
-    
   });
-  
-  // $('a').click(function(){
-  //   $('a:hidden').fadeIn();
-  //   $(this).fadeOut("Slow");
-  
-  // });
-
 
   $('a').click(function(){
     if($(this).is("#nextList")){
       $('#backList').fadeIn();
-      // $(this).text("SUBMIT");
       $(this).hide();
       $("#listSubmit").show();
-      // $(this).replaceWith(listSubmit.clone().show());
-      // $(this).attr({
-      //   onclick:myResult()
-      // });
     }else{
       $(this).fadeOut("slow");
         $(this).hide();
          $("#listSubmit").hide();
       $("#nextList").show();
-      //  $('#nextList').fadeIn();
-        // $('#listSubmit').replaceWith(nextList.clone());
-      // $('#nextList').text("Next");
-      // $('#nextList').attr('onclick','');
     }
   });
 
-  // $('#backList').click(function(){
-  //   $("#listSubmit").fadeOut('fast');
-  // });
-  // $('#nextList').click(function(){
-  //   $('#backList').fadeIn();
-  //   $(this).text("SUBMIT");
-  //   $(this).attr('onclick','myResult()');
-  // });
-
-
 function myResult() {
-    $.get( "/done", function( data ) {
-      
-    });
+   
     var arr = [];
     $.each($('input:checked'), function() {
       var value = $(this).val()
-
       arr.push(value)
     })
   console.log(arr)
@@ -214,18 +178,20 @@ function myResult() {
            data:{
              arr:arr
            }
-       }).done(function (result) {
-    //      result.forEach( (result,idx)=>{
-    //  $('.listResult').eq(idx).text(result[idx%2])
-    //  console.log(res
-// })
+       }).done(function (result) {   
+        $.get( "/done");
+
            $('.listResult').eq(0).text(result[0][0]);
            $('.listResult').eq(1).text(result[0][1]);
            $('.listResult').eq(2).text(result[1][0]);
            $('.listResult').eq(3).text(result[1][1]);
            $('.listResult').eq(4).text(result[2][0]);
            $('.listResult').eq(5).text(result[2][1]);
-           $('#namePart').text('Hi '+result[result.length-1].name+'!');
+           var str = result[result.length-1].name;
+              str = str.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+              return letter.toUpperCase();
+           });
+           $('#namePart').text('Hi '+str+'!');
            
        })
    }

@@ -2,7 +2,7 @@
 
     <div class="container">
 
-    <h1 class="text-center col-md-12 font-weight-bold" style="font-size:5em;margin-bottom:0">Holland Personality
+    <h1 class="text-center col-md-12 font-weight-bold" style="font-size:4.8em;margin-bottom:0;margin-top:0.7em">Holland Personality
             </h1>
 
     <h1 class="text-center col-md-12 font-weight-bold" style="font-size:3em">Career Test by John L. Holland</h1>
@@ -72,14 +72,14 @@
           rules: {
             name: "required",
             email: { required: true, email: true },
-            phone: { required:true,digits:true,minlength:11,maxlength:12},
+            phone: { required:true,digits:true,minlength:10,maxlength:12},
             major:"required",
             school:"required"
           },
           messages:{
             email: {required:"Please Insert your email",email:"Please input email format (ex: yourname@gmail.com )"},
             name: { required: "Please Insert your name" },       
-            phone: { required: "Please Insert your phone", minlength: " min 11 number",   maxlength: "max 12 number",digits:"Please enter number (ex: 08121XXXXXXX )" },
+            phone: { required: "Please Insert your phone", minlength: " min 10 number",   maxlength: "max 12 number",digits:"Please enter number (ex: 08121XXXXXXX )" },
             major:{required:"Please input your major"}
           }, errorClass: "error_form",
           errorPlacement: function (error, element) {
