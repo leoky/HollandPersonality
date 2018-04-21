@@ -3,12 +3,12 @@ body {
   /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
 }
 body{
-  background-image:url("../images/main/pho.png");
+  /* background-image:url("../images/main/pho.png");
   background-position: right top;
   background-size: 47%;
   background-repeat:no-repeat;
   background-attachment:fixed;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
   }
 
 @font-face {

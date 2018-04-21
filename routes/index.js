@@ -143,16 +143,22 @@ router.get('/done',(req,res)=>{
           // name:req.session.name.charAt(0).toUpperCase()+req.session.name.slice(1),
           result:result,
           attachments:[
-            {   // filename and content type is derived from path
-                filename: 'header.png',
-                filePath: process.cwd() + '/public/images/main/header.png',
-                cid: 'header' 
-            },
+            // {   // filename and content type is derived from path
+            //     filename: 'header.png',
+            //     filePath: process.cwd() + '/public/images/main/header.png',
+            //     cid: 'header' 
+            // },
+            // {   // filename and content type is derived from path
+            //     filename: 'hmjsi.png',
+            //     filePath: process.cwd() + '/public/images/main/hmjsi.png',
+            //     cid: 'header' 
+            // },
             {
-                filename: 'FooterHTML.png',
-                filePath: process.cwd() + '/public/images/main/FooterHTML.png',
+                filename: 'Artboard1.png',
+                filePath: process.cwd() + '/public/images/main/Artboard1.png',
                 cid: 'FooterHTML'
             }
+           
           ],
           otherProperty: 'Other Property' // All additional properties are also passed to the template as local variables. 
         }, function (err) {
