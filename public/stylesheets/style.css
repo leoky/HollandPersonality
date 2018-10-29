@@ -105,7 +105,7 @@ a {
 .labelForm{
   font-family: 'Montserrat';
   
-   font-size: 1.5em;
+   /* font-size: 1.5em; */
 }
 .inputForm{
   border-radius: 0.5em;
@@ -116,7 +116,9 @@ a {
   border:3px solid rgb(145, 143, 143);
 }
 /* close for form */
-
+label{
+  margin-bottom:0.1em;
+}
 .myText{
   font-family: 'Montserrat';
 }
